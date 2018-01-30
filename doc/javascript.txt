@@ -1,0 +1,244 @@
+/*
+*JavaScript差异笔记
+*/
+
+1.重新声明 JavaScript 变量
+如果重新声明 JavaScript 变量，该变量的值不会丢失：
+在以下两条语句执行后，变量 carname 的值依然是 "Volvo"：
+var carname="Volvo";
+var carname;
+
+2.对代码行进行折行
+您可以在文本字符串中使用反斜杠对代码行进行换行。下面的例子会正确地显示：
+document.write("Hello \
+World!");
+
+3.JavaScript 是脚本语言。浏览器会在读取代码时，逐行地执行脚本代码。而对于传统编程来说，会在执行前对所有代码进行编译。
+
+4.HTML 中的脚本必须位于 <script> 与 </script> 标签之间。脚本可被放置在 HTML 页面的 <body> 和 <head> 部分中。
+
+5.外部的 JavaScript也可以把脚本保存到外部文件中。外部文件通常包含被多个网页使用的代码。
+外部 JavaScript 文件的文件扩展名是 .js。
+如需使用外部文件，请在 <script> 标签的 "src" 属性中设置该 .js 文件：
+实例
+<!DOCTYPE html>
+<html>
+<body>
+<script src="myScript.js"></script>
+</body>
+</html>
+在 <head> 或 <body> 中引用脚本文件都是可以的。实际运行效果与您在 <script> 标签中编写脚本完全一致。
+提示：外部脚本不能包含 <script> 标签。
+
+6.JavaScript 数据类型
+字符串、数字、布尔、数组、对象、Null、Undefined
+6.1:JavaScript 拥有动态类型
+JavaScript 拥有动态类型。这意味着相同的变量可用作不同的类型：
+var x                // x 为 undefined
+var x = 6;           // x 为数字
+var x = "Bill";      // x 为字符串
+6.2:JavaScript 布尔
+布尔（逻辑）只能有两个值：true 或 false。
+var x=true
+var y=false
+6.3:JavaScript 数组
+下面的代码创建名为 cars 的数组：
+var cars=new Array();
+cars[0]="Audi";
+cars[1]="BMW";
+cars[2]="Volvo";
+或者
+var cars=new Array("Audi","BMW","Volvo");
+或者
+var cars=["Audi","BMW","Volvo"];
+6.4：JavaScript 对象
+对象由花括号分隔。在括号内部，对象的属性以名称和值对的形式 (name : value) 来定义。属性由逗号分隔：
+var person={firstname:"Bill", lastname:"Gates", id:5566};
+对象属性有两种寻址方式：
+name=person.lastname;
+name=person["lastname"];
+6.5：Undefined 和 Null
+Undefined 这个值表示变量不含有值。
+可以通过将变量的值设置为 null 来清空变量。
+cars=null;
+person=null;
+6.6：声明变量类型
+当您声明新变量时，可以使用关键词 "new" 来声明其类型：
+var carname=new String;
+var x=      new Number;
+var y=      new Boolean;
+var cars=   new Array;
+var person= new Object;
+JavaScript 变量均为对象。当您声明一个变量时，就创建了一个新的对象。
+
+7.JavaScript 对象
+JavaScript 中的所有事物都是对象：字符串、数字、数组、日期，等等。
+在 JavaScript 中，对象是拥有属性和方法的数据。
+7.1：JavaScript 中的对象
+在 JavaScript 中，对象是数据（变量），拥有属性和方法。
+当您像这样声明一个 JavaScript 变量时：
+var txt = "Hello";
+您实际上已经创建了一个 JavaScript 字符串对象。字符串对象拥有内建的属性 length。
+对于上面的字符串来说，length 的值是 5。字符串对象同时拥有若干个内建的方法。
+属性：
+txt.length=5
+方法：
+txt.indexOf()
+txt.replace()
+txt.search()
+提示：在面向对象的语言中，属性和方法常被称为对象的成员。
+7.2：创建 JavaScript 对象
+JavaScript 中的几乎所有事务都是对象：字符串、数字、数组、日期、函数，等等。
+你也可以创建自己的对象。
+本例创建名为 "person" 的对象，并为其添加了四个属性：
+实例
+person=new Object();
+person.firstname="Bill";
+person.lastname="Gates";
+person.age=56;
+person.eyecolor="blue";
+创建新 JavaScript 对象有很多不同的方法，并且您还可以向已存在的对象添加属性和方法。
+7.3：访问对象的属性
+访问对象属性的语法是：
+objectName.propertyName
+本例使用 String 对象的 length 属性来查找字符串的长度：
+var message="Hello World!";
+var x=message.length;
+7.4：访问对象的方法
+您可以通过下面的语法调用方法：
+objectName.methodName()
+这个例子使用 String 对象的 toUpperCase() 方法来把文本转换为大写：
+var message="Hello world!";
+var x=message.toUpperCase();
+7.5：使用对象构造器
+本例使用函数来构造对象：
+实例
+function person(firstname,lastname,age,eyecolor)
+{
+this.firstname=firstname;
+this.lastname=lastname;
+this.age=age;
+this.eyecolor=eyecolor;
+}
+创建 JavaScript 对象实例
+var myFather=new person("Bill","Gates",56,"blue");
+var myMother=new person("Steve","Jobs",48,"green");
+把属性添加到 JavaScript 对象
+您可以通过为对象赋值，向已有对象添加新属性：
+假设 personObj 已存在 - 您可以为其添加这些新属性：firstname、lastname、age 以及 eyecolor：
+person.firstname="Bill";
+person.lastname="Gates";
+person.age=56;
+person.eyecolor="blue";
+把方法添加到 JavaScript 对象
+方法只不过是附加在对象上的函数。
+在构造器函数内部定义对象的方法：
+function person(firstname,lastname,age,eyecolor)
+{
+this.firstname=firstname;
+this.lastname=lastname;
+this.age=age;
+this.eyecolor=eyecolor;
+
+this.changeName=changeName;
+function changeName(name)
+{
+this.lastname=name;
+}
+}
+
+8.JavaScript 变量的生存期
+JavaScript 变量的生命期从它们被声明的时间开始。
+局部变量会在函数运行以后被删除。
+全局变量会在页面关闭后被删除
+
+9.向未声明的 JavaScript 变量来分配值
+如果您把值赋给尚未声明的变量，该变量将被自动作为全局变量声明
+carname="Volvo";
+将声明一个全局变量 carname，即使它在函数内执行。
+
+10.用于字符串的 + 运算符
++ 运算符用于把文本值或字符串变量加起来（连接起来）。
+如需把两个或多个字符串变量连接起来，请使用 + 运算符。
+txt1="What a very";
+txt2="nice day";
+txt3=txt1+txt2;
+在以上语句执行后，变量 txt3 包含的值是 "What a verynice day"。
+
+11.对字符串和数字进行加法运算
+如果把数字与字符串相加，结果将成为字符串。
+
+12.不同类型的循环
+JavaScript 支持不同类型的循环：
+for - 循环代码块一定的次数
+for/in - 循环遍历对象的属性
+while - 当指定的条件为 true 时循环指定的代码块
+do/while - 同样当指定的条件为 true 时循环指定的代码块
+12.1：For/In 循环
+JavaScript for/in 语句循环遍历对象的属性：
+实例
+var person={fname:"John",lname:"Doe",age:25};
+for (x in person)
+{
+  txt=txt + person[x];
+}
+
+13.JavaScript 标签
+正如您在 switch 语句那一章中看到的，可以对 JavaScript 语句进行标记。
+如需标记 JavaScript 语句，请在语句之前加上冒号：
+label:
+语句
+语法
+break labelname;
+continue labelname;
+通过标签引用，break 语句可用于跳出任何 JavaScript 代码块：
+实例
+cars=["BMW","Volvo","Saab","Ford"];
+list:
+{
+document.write(cars[0] + "<br>");
+document.write(cars[1] + "<br>");
+document.write(cars[2] + "<br>");
+break list;
+document.write(cars[3] + "<br>");
+document.write(cars[4] + "<br>");
+document.write(cars[5] + "<br>");
+}
+
+14.JavaScript 测试和捕捉
+try 语句允许我们定义在执行时进行错误测试的代码块。
+catch 语句允许我们定义当 try 代码块发生错误时，所执行的代码块。
+JavaScript 语句 try 和 catch 是成对出现的。
+语法
+try
+{
+//在这里运行代码
+}
+catch(err)
+{
+//在这里处理错误
+}
+
+15.JavaScript 数字
+所有 JavaScript 数字均为 64 位
+JavaScript 不是类型语言。与许多其他编程语言不同，JavaScript 不定义不同类型的数字，比如整数、短、长、浮点等等。
+JavaScript 中的所有数字都存储为根为 10 的 64 位（8 比特），浮点数。
+15.1：八进制和十六进制
+如果前缀为 0，则 JavaScript 会把数值常量解释为八进制数，如果前缀为 0 和 "x"，则解释为十六进制数。
+var y=0377;
+var z=0xFF;
+15.2：数字属性和方法
+属性：
+MAX VALUE
+MIN VALUE
+NEGATIVE INFINITIVE
+POSITIVE INFINITIVE
+NaN
+prototype
+constructor
+方法：
+toExponential()
+toFixed()
+toPrecision()
+toString()
+valueOf()
